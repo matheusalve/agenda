@@ -40,11 +40,13 @@
 </head>
 
 <body>
-    <h1 style="padding-top:170px;">Seja bem vindo ao contact book</h1>
-    <h2 style="padding-top:120px;">Entre:</h2>
+    <h1>Seja bem vindo ao contact book</h1>
+
     <div class="box">
+        <h2 style="padding-bottom: 30px;">Entre</h2>
         <a href="login.php">Login</a>
         <a href="formulario.php">Cadastre-se</a>
+        <br><br><br>
     </div>
 </body>
 
