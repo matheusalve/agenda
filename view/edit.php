@@ -1,6 +1,7 @@
 <?php
 
-include "db_conn.php";
+include "/var/www/html/model/db_conn.php";
+
 $id = $_GET['id'];
 
 if (isset($_POST['submit'])) {
@@ -15,7 +16,7 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-        header("Location: index.php?msg=Atualização feita com sucesso");
+        header("Location: sistema.php?msg=Atualização feita com sucesso");
         exit();
     } else {
         echo "Falha: " . mysqli_error($conn);
@@ -37,7 +38,7 @@ if (isset($_POST['submit'])) {
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Agenda de contatos</title>
+    <title>Editar Contatos</title>
 </head>
 
 <body>
@@ -91,16 +92,16 @@ if (isset($_POST['submit'])) {
                 <div class="form-group mb-3" style="padding-top: 10px;">
                     <label>Gênero:</label>
                     &nbsp;
-                    <input type="radio" class="form-check-input" name="genero" id="masculino" value="masculino"<?php echo ($row["genero"] == 'masculino') ? "checked" : ""; ?>>
+                    <input type="radio" class="form-check-input" name="genero" id="masculino" value="masculino" <?php echo ($row["genero"] == 'masculino') ? "checked" : ""; ?>>
                     <label for="masculino" class="form-input-label">Masculino</label>
                     &nbsp;
-                    <input type="radio" class="form-check-input" name="genero" id="feminino" value="feminino"<?php echo ($row["genero"] == 'feminino') ? "checked" : ""; ?>>
+                    <input type="radio" class="form-check-input" name="genero" id="feminino" value="feminino" <?php echo ($row["genero"] == 'feminino') ? "checked" : ""; ?>>
                     <label for="feminino" class="form-input-label">Feminino</label>
                 </div>
 
                 <div>
                     <button type="submit" class="btn btn-success" name="submit">Update</button>
-                    <a href="index.php" class="btn btn-danger" onclick="return confirm('Tem certeza que não deseja adicionar um novo contato?')">Cancelar</a>
+                    <a href="sistema.php" class="btn btn-danger" onclick="return confirm('Tem certeza que não deseja adicionar um novo contato?')">Cancelar</a>
                 </div>
             </form>
         </div>

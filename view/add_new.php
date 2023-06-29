@@ -5,8 +5,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require '/var/www/html/crud/lib/vendor/autoload.php';
-
-include 'db_conn.php';
+include "/var/www/html/model/db_conn.php";
 
 if (isset($_POST['submit'])) {
    $nome = $_POST['nome'];
@@ -23,8 +22,9 @@ if (isset($_POST['submit'])) {
       $mail = new PHPMailer(true);
 
       try {
-         
+
          $mail->isSMTP();
+         $mail->CharSet = "UTF-8";
          $mail->Host       = 'sandbox.smtp.mailtrap.io';
          $mail->SMTPAuth   = true;
          $mail->Username   = 'c462923bc19ea5';
@@ -37,15 +37,14 @@ if (isset($_POST['submit'])) {
 
          $mail->isHTML(true);
          $mail->Subject = 'Confirmar o email';
-         $mail->Body    = "Prezado(a) " . $_POST['nome'] . ".<br><br> Agradecemos a sua solicitação de cadastramento em nosso site! <br><br>Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicando no link abaixo: <br><br> <a href='http://localhost/crud/confirmar_email.php?chave=chave_de_confirmacao'>Clique aqui</a><br><br>Esta mensagem foi enviada a você pela empresa XXX.<br>Você está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.<br><br>";
+         $mail->Body    = "Prezado(a) " . $_POST['nome'] . ".<br><br> Agradecemos a sua solicitação de cadastramento em nosso site! <br><br>Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicando no link abaixo: <br><br> <a href='http://localhost/view/sistema.php?chave=chave_de_confirmacao'>Clique aqui</a><br><br>Esta mensagem foi enviada a você pela empresa XXX.<br>Você está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.<br><br>";
 
-         $mail->AltBody = "Prezado(a) " . $_POST['nome'] . ".\n\n Agradecemos a sua solicitação de cadastramento em nosso site! \n\nPara que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicando no link abaixo: \n\n <a href='http://localhost/crud/confirmar_email.php?chave=chave_de_confirmacao'>Clique aqui</a>\n\nEsta mensagem foi enviada a você pela empresa XXX.\nVocê está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.\n\n";
+         $mail->AltBody = "Prezado(a) " . $_POST['nome'] . ".\n\n Agradecemos a sua solicitação de cadastramento em nosso site! \n\nPara que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicando no link abaixo: \n\n <a href='http://localhost/view/sistema.php?chave=chave_de_confirmacao'>Clique aqui</a>\n\nEsta mensagem foi enviada a você pela empresa XXX.\nVocê está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.\n\n";
 
          $mail->send();
-         echo 'Email enviado com sucesso';
+         echo 'Email enviado com sucesso. Por favor, verifique sua caixa de email e clique no link para ter acesso a plataforma';
 
-         // Exibir mensagem de sucesso na mesma página
-         echo "Novo registro criado com sucesso";
+ 
          exit();
       } catch (Exception $e) {
          echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -128,7 +127,7 @@ if (isset($_POST['submit'])) {
 
             <div>
                <button type="submit" class="btn btn-success" name="submit">Salvar</button>
-               <a href="index.php" class="btn btn-danger" onclick="return confirm('Tem certeza que não deseja adicionar um novo contato?')">Cancelar</a>
+               <a href="sistema.php" class="btn btn-danger" onclick="return confirm('Tem certeza que não deseja adicionar um novo contato?')">Cancelar</a>
             </div>
          </form>
       </div>

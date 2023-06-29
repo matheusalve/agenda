@@ -1,5 +1,5 @@
 <?php
-include "db_conn.php";
+include "/var/www/html/model/db_conn.php";
 ?>
 
 <!DOCTYPE html>
@@ -28,10 +28,9 @@ include "db_conn.php";
         <?php
         if (isset($_GET["msg"])) {
             $msg = $_GET["msg"];
-            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-      ' . $msg . '
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>';
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">    ' . $msg . '
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
         }
         ?>
         <a href="add_new.php" class="btn btn-dark mb-3">Adicionar</a>
