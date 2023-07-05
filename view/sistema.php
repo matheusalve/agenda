@@ -40,43 +40,7 @@ $seguranca = isset($_SESSION['ativa']) ? true : header("Location: login.php");
             overflow-y: auto;
         }
 
-        .popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: lightgreen;
-            z-index: 9999;
-            opacity: 1;
-            animation-name: fadeOut;
-            animation-duration: 4s;
-        }
 
-        .popup-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        @keyframes fadeOut {
-            0% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 0.1;
-            }
-
-            100% {
-                opacity: 0;
-                display: none;
-            }
-        }
     </style>
 
     <title>Agenda de contatos</title>
@@ -140,16 +104,6 @@ $seguranca = isset($_SESSION['ativa']) ? true : header("Location: login.php");
 
     <?php }  ?>
 
-
-    <!-- Pop-up -->
-    <?php if (isset($_GET['msg'])) : ?>
-        <div class="popup">
-            <div class="popup-content">
-                <h1>Pop-up de Boas-Vindas</h1>
-                <p><?php echo $_GET['msg']; ?></p>
-            </div>
-        </div>
-    <?php endif; ?>
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
