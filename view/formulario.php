@@ -12,8 +12,13 @@ if (isset($_POST['submit'])) {
     $estado = $_POST['estado'];
 
     $sql = "INSERT INTO `usuarios` (`id`, `nome`, `senha`, `email`, `telefone`, `genero`, `data_nasc`, `cidade`, `estado`) VALUES (NULL, '$nome', '$senha', '$email', '$telefone', '$genero', '$data_nasc', '$cidade', '$estado')";
+
     $result = mysqli_query($conn, $sql);
+    if ($result) {
+        header("Location: login.php?msg=Por favor, insira seu email e senha para acessar nossa página");
+    }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +30,20 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário</title>
     <style>
+        #mostrarSenhaBtn {
+            background-image: linear-gradient(to right, rgb(0, 151, 197), rgb(90, 20, 220));
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+        }
+
+        #mostrarSenhaBtn:hover {
+            background-image: linear-gradient(to right, #027b8b, #00b4cc);
+            cursor: pointer;
+        }
+
         .back-link {
             position: fixed;
             top: 20px;
@@ -138,10 +157,15 @@ if (isset($_POST['submit'])) {
                 <br><br>
                 <div class="inputBox">
                     <input type="password" name="senha" id="senha" class="inputUser" required>
-                    <label for="senha" class="labelInput">Digite sua senha</label>
+                    <label for="senha" class="labelInput">Digite sua senha</label><br>
+                    <button type="button" id="mostrarSenhaBtn" onclick="togglePasswordVisibility()">Mostrar Senha</button>
+
                 </div>
                 <br><br>
-                <div class="inputBox">
+                <div class="<?php
+                            include "/var/www/html/model/db_conn.php";
+                            include "/var/www/html/model/db_cadas__conn.php";
+                            ?>inputBox">
                     <input type="text" name="email" id="email" class="inputUser" required>
                     <label for="email" class="labelInput">Email</label>
                 </div>
@@ -173,10 +197,22 @@ if (isset($_POST['submit'])) {
                     <label for="estado" class="labelInput">Estado</label>
                 </div>
                 <br><br>
-                <input type="submit" name="submit" id="submit">
+                <input type="submit" name="submit" id="submit" value="Cadastrar">
             </fieldset>
         </form>
     </div>
+    <script>
+        function togglePasswordVisibility() {
+            var senhaInput = document.getElementById("senha");
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+                document.getElementById("mostrarSenhaBtn").textContent = "Ocultar Senha";
+            } else {
+                senhaInput.type = "password";
+                document.getElementById("mostrarSenhaBtn").textContent = "Mostrar Senha";
+            }
+        }
+    </script>
 </body>
 
 </html>

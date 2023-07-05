@@ -1,9 +1,11 @@
 <?php
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+require '/var/www/html/crud/lib/vendor/phpmailer/phpmailer/src/Exception.php';
+require '/var/www/html/crud/lib/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require '/var/www/html/crud/lib/vendor/phpmailer/phpmailer/src/SMTP.php';
 require '/var/www/html/crud/lib/vendor/autoload.php';
 include "/var/www/html/model/db_conn.php";
 
@@ -22,29 +24,29 @@ if (isset($_POST['submit'])) {
       $mail = new PHPMailer(true);
 
       try {
-
          $mail->isSMTP();
+         $mail->SMTPDebug = SMTP::DEBUG_SERVER;
          $mail->CharSet = "UTF-8";
-         $mail->Host       = 'sandbox.smtp.mailtrap.io';
+         $mail->Host       = 'smtp.gmail.com';
          $mail->SMTPAuth   = true;
-         $mail->Username   = 'c462923bc19ea5';
-         $mail->Password   = '68cd4e1719b2e8';
-         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-         $mail->Port       = 2525;
+         $mail->Username   = 'matheusalvescarvalho07@gmail.com';
+         $mail->Password   = 'dhpnbdoazrnkwyxv';
+         $mail->SMTPSecure = 'ssl';
+         $mail->Port       = 465;
 
-         $mail->setFrom('matheus@crud.com.br', 'matheus');
-         $mail->addAddress($_POST['email'], $_POST['nome']);
+         $mail->setFrom('matheusalvescarvalho07@gmail.com');
+         $mail->addAddress($_POST["email"]);
 
          $mail->isHTML(true);
          $mail->Subject = 'Confirmar o email';
-         $mail->Body    = "Prezado(a) " . $_POST['nome'] . ".<br><br> Agradecemos a sua solicitação de cadastramento em nosso site! <br><br>Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicando no link abaixo: <br><br> <a href='http://localhost/view/sistema.php?chave=chave_de_confirmacao'>Clique aqui</a><br><br>Esta mensagem foi enviada a você pela empresa XXX.<br>Você está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.<br><br>";
+         $mail->Body    = "Prezado(a) " . $_POST['nome'] . ".<br><br> Agradecemos a sua solicitação de cadastramento em nosso site! <br><br>Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicando no link abaixo: <br><br> <a href='http://localhost/crud/confirm_email.php?chave=chave_de_confirmacao'>Clique aqui</a><br><br>Esta mensagem foi enviada a você pela empresa XXX.<br>Você está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.<br><br>";
 
-         $mail->AltBody = "Prezado(a) " . $_POST['nome'] . ".\n\n Agradecemos a sua solicitação de cadastramento em nosso site! \n\nPara que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicando no link abaixo: \n\n <a href='http://localhost/view/sistema.php?chave=chave_de_confirmacao'>Clique aqui</a>\n\nEsta mensagem foi enviada a você pela empresa XXX.\nVocê está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.\n\n";
+         $mail->AltBody = "Prezado(a) " . $_POST['nome'] . ".\n\n Agradecemos a sua solicitação de cadastramento em nosso site! \n\nPara que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicando no link abaixo: \n\n <a href='http://localhost/crud/confirm_email.php?chave=chave_de_confirmacao'>Clique aqui</a>\n\nEsta mensagem foi enviada a você pela empresa XXX.\nVocê está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.\n\n";
 
          $mail->send();
-         echo 'Email enviado com sucesso. Por favor, verifique sua caixa de email e clique no link para ter acesso a plataforma';
+         echo 'Email enviado com sucesso';
 
- 
+         echo "Novo registro criado com sucesso";
          exit();
       } catch (Exception $e) {
          echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -53,8 +55,8 @@ if (isset($_POST['submit'])) {
       echo "Erro ao inserir o registro: " . mysqli_error($conn);
    }
 }
-
 ?>
+
 
 
 <!DOCTYPE html>

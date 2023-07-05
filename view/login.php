@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,6 +8,7 @@
     <title>Tela de Login</title>
     <style>
         .back-link {
+            background-color: black;
             position: fixed;
             top: 20px;
             left: 20px;
@@ -52,7 +54,6 @@
             border-radius: 10px;
             color: white;
             font-size: 15px;
-
         }
 
         .inputSubmit:hover {
@@ -73,6 +74,35 @@
         button:hover {
             background-color: #04adc4;
         }
+
+        .popup {
+            position: fixed;
+            top: 15%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #007786;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: linear-gradient(45deg, #007786, #8CFFB2);
+            z-index: 9999;
+            opacity: 1;
+            animation-name: fadeOut;
+            animation-duration: 22s;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                opacity: 0;
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -85,8 +115,25 @@
             <br><br>
             <input type="password" name="senha" placeholder="Senha">
             <br><br>
-            <input class="inputSubmit" type="submit" name="submit" value="Enviar">
+            <input class="inputSubmit" type="submit" name="submit" value="Entrar">
+        </form>
     </div>
+
+    <?php if (isset($_GET['msg'])) : ?>
+        <div class="popup">
+            <h1>Muito Bem</h1>
+            <p><?php echo $_GET['msg']; ?></p>
+        </div>
+    <?php endif; ?>
+
+    <script>
+        function fecharPopup() {
+            var popup = document.querySelector('.popup');
+            popup.style.display = 'none';
+        }
+
+        setTimeout(fecharPopup, 9000);
+    </script>
 </body>
 
 </html>

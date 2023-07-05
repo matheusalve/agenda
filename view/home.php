@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de login</title>
-    <style>
+    <style> 
+    h1{
+        padding-top: 150px;
+    }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-image: linear-gradient(45deg, #007786, #8CFFB2);
@@ -40,7 +44,7 @@
 </head>
 
 <body>
-    <h1>Seja bem vindo ao contact book</h1>
+    <h1>SEJA BEM VINDO AO CONTACT BOOK</h1>
 
     <div class="box">
         <h2 style="padding-bottom: 30px;">Entre</h2>
