@@ -1,5 +1,5 @@
 <?php
-include "/var/www/html/model/db_cadas__conn.php";
+include "/var/www/html/model/db_conn.php";
 
 if (isset($_POST['submit'])) {
     $nome = $_POST['nome'];

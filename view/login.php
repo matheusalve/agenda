@@ -1,3 +1,9 @@
+<?php 
+require_once "functions.php";
+if (isset($_POST['submit'])){
+    login($conn);
+}
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -6,7 +12,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de Login</title>
-    <style>
+ 
+</head>
+<style>
         .back-link {
             background-color: black;
             position: fixed;
@@ -104,36 +112,22 @@
             }
         }
     </style>
-</head>
-
 <body>
     <a class="back-link" href="home.php">Voltar</a>
     <div>
         <h1 style="text-align: center;">Login</h1>
-        <form action="testLogin.php" method="POST">
-            <input type="text" name="email" placeholder="Email">
+        <form action="" method="POST">
+            <input type="email" name="email" placeholder="Insira seu email">
             <br><br>
-            <input type="password" name="senha" placeholder="Senha">
+            <input type="password" name="senha" placeholder="Insira sua senha">
             <br><br>
             <input class="inputSubmit" type="submit" name="submit" value="Entrar">
         </form>
     </div>
 
-    <?php if (isset($_GET['msg'])) : ?>
-        <div class="popup">
-            <h1>Muito Bem</h1>
-            <p><?php echo $_GET['msg']; ?></p>
-        </div>
-    <?php endif; ?>
+        <?php 
 
-    <script>
-        function fecharPopup() {
-            var popup = document.querySelector('.popup');
-            popup.style.display = 'none';
-        }
-
-        setTimeout(fecharPopup, 9000);
-    </script>
+        ?>
 </body>
 
 </html>

@@ -3,9 +3,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '/var/www/html/crud/lib/vendor/phpmailer/phpmailer/src/Exception.php';
-require '/var/www/html/crud/lib/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require '/var/www/html/crud/lib/vendor/phpmailer/phpmailer/src/SMTP.php';
 require '/var/www/html/crud/lib/vendor/autoload.php';
 include "/var/www/html/model/db_conn.php";
 

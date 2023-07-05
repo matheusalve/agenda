@@ -1,6 +1,8 @@
 <?php
 include "/var/www/html/model/db_conn.php";
-include "/var/www/html/model/db_cadas__conn.php";
+session_start();
+
+$seguranca = isset($_SESSION['ativa']) ? true : header("Location: login.php");
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +23,7 @@ include "/var/www/html/model/db_cadas__conn.php";
         .btn-exit {
             position: fixed;
             top: 40px;
-            right: 20px;    
+            right: 20px;
         }
 
         h1 {
@@ -81,58 +83,63 @@ include "/var/www/html/model/db_cadas__conn.php";
 </head>
 
 <body>
-    <h1>LISTA DE CONTATOS</h1>
 
-    <a href="sair.php" class="btn btn-danger btn-exit">Sair</a>
+    <?php if ($seguranca) { ?>
+        <h1>LISTA DE CONTATOS</h1>
 
-    <div class="container">
-        <?php
-        if (isset($_GET["msg"])) {
-            $msg = $_GET["msg"];
-            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">    ' . $msg . '
+        <a href="logout.php" class="btn btn-danger btn-exit">Sair</a>
+
+        <div class="container">
+            <?php
+            if (isset($_GET["msg"])) {
+                $msg = $_GET["msg"];
+                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">    ' . $msg . '
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
-        }
-        ?>
-        <br><br><br>
-        <a href="add_new.php" class="btn btn-dark mb-3">Adicionar</a>
+            }
+            ?>
+            <br><br><br>
+            <a href="add_new.php" class="btn btn-dark mb-3">Adicionar</a>
 
-        <div class="table-container">
-            <table class="table table-hover text-center">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">NOME</th>
-                        <th scope="col">SOBRENOME</th>
-                        <th scope="col">EMAIL</th>
-                        <th scope="col">GENERO</th>
-                        <th scope="col">AÇÃO</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $sql = "SELECT * FROM `crud`";
-                    $result = mysqli_query($conn, $sql);
-                    while ($row = mysqli_fetch_assoc($result)) {
-                    ?>
+            <div class="table-container">
+                <table class="table table-hover text-center">
+                    <thead class="table-dark">
                         <tr>
-                            <td><?php echo $row["id"] ?></td>
-                            <td><?php echo $row["nome"] ?></td>
-                            <td><?php echo $row["sobrenome"] ?></td>
-                            <td><?php echo $row["email"] ?></td>
-                            <td><?php echo $row["genero"] ?></td>
-                            <td>
-                                <a href="edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
-                                <a href="delete.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa-solid fa-trash fs-5" onclick="return confirm('Tem certeza que deseja excluir esse contato?')"></i></a>
-                            </td>
+                            <th scope="col">ID</th>
+                            <th scope="col">NOME</th>
+                            <th scope="col">SOBRENOME</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">GENERO</th>
+                            <th scope="col">AÇÃO</th>
                         </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sql = "SELECT * FROM `crud`";
+                        $result = mysqli_query($conn, $sql);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                            <tr>
+                                <td><?php echo $row["id"] ?></td>
+                                <td><?php echo $row["nome"] ?></td>
+                                <td><?php echo $row["sobrenome"] ?></td>
+                                <td><?php echo $row["email"] ?></td>
+                                <td><?php echo $row["genero"] ?></td>
+                                <td>
+                                    <a href="edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+                                    <a href="delete.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa-solid fa-trash fs-5" onclick="return confirm('Tem certeza que deseja excluir esse contato?')"></i></a>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+
+    <?php }  ?>
+
 
     <!-- Pop-up -->
     <?php if (isset($_GET['msg'])) : ?>
