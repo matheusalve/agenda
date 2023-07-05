@@ -21,14 +21,13 @@ include "/var/www/html/model/db_cadas__conn.php";
         .btn-exit {
             position: fixed;
             top: 40px;
-            right: 20px;
+            right: 20px;    
         }
 
         h1 {
             text-align: center;
             background-image: linear-gradient(45deg, #007786, #8CFFB2);
             padding: 2%;
-            position: sticky;
             top: 0;
             z-index: 999;
         }
@@ -67,11 +66,9 @@ include "/var/www/html/model/db_cadas__conn.php";
                 opacity: 1;
             }
 
-
             90% {
                 opacity: 0.1;
             }
-
 
             100% {
                 opacity: 0;
