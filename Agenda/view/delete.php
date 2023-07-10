@@ -1,5 +1,5 @@
 <?php
-include "/var/www/html/model/db_conn.php";
+include "/var/www/html/Agenda/model/db_conn.php";
 $id = $_GET["id"];
 $sql = "DELETE FROM `crud` WHERE id = $id";
 $result = mysqli_query($conn, $sql);

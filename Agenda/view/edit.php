@@ -1,6 +1,6 @@
 <?php
 
-include "/var/www/html/model/db_conn.php";
+include "/var/www/html/Agenda/model/db_conn.php";
 
 $id = $_GET['id'];
 

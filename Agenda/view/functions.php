@@ -1,5 +1,5 @@
 <?php
-include "../model/db_conn.php";
+include "/var/www/html/Agenda/model/db_conn.php";
 
 $conn = mysqli_connect ($servername, $username, $password, $dbname);
 

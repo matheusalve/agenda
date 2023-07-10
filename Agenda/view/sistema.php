@@ -1,5 +1,5 @@
 <?php
-include "/var/www/html/model/db_conn.php";
+include "/var/www/html/Agenda/model/db_conn.php";
 session_start();
 
 $seguranca = isset($_SESSION['ativa']) ? true : header("Location: login.php");
