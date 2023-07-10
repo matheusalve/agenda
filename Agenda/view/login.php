@@ -1,6 +1,6 @@
 <?php
 include "/var/www/html/model/db_conn.php";
-require_once "functions.php";                                     //o erro ta aqui 
+require_once "functions.php";                                
 if (isset($_POST['submit'])) {
     login($conn);
 }
