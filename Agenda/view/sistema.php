@@ -62,7 +62,6 @@ $seguranca = isset($_SESSION['ativa']) ? true : header("Location: login.php");
             ?>
             <br><br><br>
             <a href="add_new.php" class="btn btn-dark mb-3">Adicionar</a>
-
             <div class="table-container">
                 <table class="table table-hover text-center">
                     <thead class="table-dark">

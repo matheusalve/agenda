@@ -36,4 +36,3 @@ function logout()
     header("Location: sistema.php");
     exit();
 }
-?>

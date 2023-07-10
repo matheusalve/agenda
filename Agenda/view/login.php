@@ -1,6 +1,6 @@
 <?php
 include "/var/www/html/Agenda/model/db_conn.php";
-require_once "functions.php";                                
+require_once "functions.php";
 if (isset($_POST['submit'])) {
     login($conn);
 }
