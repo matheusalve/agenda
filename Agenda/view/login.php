@@ -128,6 +128,10 @@ if (isset($_POST['submit'])) {
             <input class="inputSubmit" type="submit" name="submit" value="Entrar">
         </form>
     </div>
+
+    <script>
+        
+    </script>
 </body>
 
 </html>

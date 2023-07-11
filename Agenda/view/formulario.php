@@ -15,10 +15,24 @@ if (isset($_POST['submit'])) {
 
     $result = mysqli_query($conn, $sql);
     if ($result) {
-        header("Location: login.php?msg=Por favor, insira seu email e senha para acessar nossa página");
+        $redirectUrl = "login.php?msg=Por favor, insira seu email e senha para acessar nossa página";
+        echo "<script>";
+        echo "document.addEventListener('DOMContentLoaded', function() {";
+        echo "  Swal.fire({";
+        echo "    icon: 'success',";
+        echo "    title: 'Quase lá!',";
+        echo "    text: 'Você será redirecionado para a página de login, insira os dados cadastrados e acesse o site.',";
+        echo "    timer: 5000,";
+        echo "    showConfirmButton: false";
+        echo "  }).then(function() {";
+        echo "    window.location.href = '$redirectUrl';";
+        echo "  });";
+        echo "});";
+        echo "</script>";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,7 +42,10 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário</title>
-    <style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style> 
+
+
         #mostrarSenhaBtn {
             background-image: linear-gradient(to right, rgb(0, 151, 197), rgb(90, 20, 220));
             border: none;
@@ -143,6 +160,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
+    
     <a class="back-link" href="home.php">Voltar</a>
     <div class="box">
         <form action="formulario.php" method="POST">
@@ -197,6 +215,8 @@ if (isset($_POST['submit'])) {
             </fieldset>
         </form>
     </div>
+
+
     <script>
         function togglePasswordVisibility() {
             var senhaInput = document.getElementById("senha");
